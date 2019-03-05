@@ -462,7 +462,7 @@ So we know that we need to send a ping, and receive an echo.  Therefore, the sen
 As we discussed previously, we need to tell the Arduino how we intend to use pins.  Where do we do this type of initialization or setup work?  That's right - the ```setup()``` function.  Looking at ```setup()```, we see two lines of code that do this:
 
 ```c
-	pinMode(triggerPin, OUTPUT);
+    pinMode(triggerPin, OUTPUT);
     pinMode(echoPin, INPUT);
 ```
 
