@@ -1,8 +1,24 @@
 # Making Things with Arduino Workshop
 
+#### Table of Contents
+
+[Introduction](#Introduction)
+
+[What We Will Learn](#What-We-Will-Learn)
+
+[The Basics of Arduino](#The-Basics-of-Arduino)
+
+[The Arduino Development Environment](The-Arduino-Development-Environment)
+
+[Project 1 - Arduino Hello World](#Project 1:-Arduino-Hello-World)
+
+[Project 1 - Using a Distance (Range) Sensor](#Project-2: using a distance sensor)
+
+[Glossary and Reference](#glossary-and-reference)
 
 
-[TOC]
+
+----
 
 ## Introduction
 
@@ -61,7 +77,7 @@ We'll go over a short history of Arduino, Arduino boards, the development enviro
 
 ### Working with a Breadboard
 
-![2 - Breadboard](Making Things with Arduino Workshop.assets/2 - Breadboard.png)
+![2 - Breadboard](images/2 - Breadboard.png)
 
 
 
@@ -84,7 +100,7 @@ We'll go over a short history of Arduino, Arduino boards, the development enviro
 
 
 
-## Setting Up Your Arduino Environment
+### Setting Up Your Arduino Environment
 
 > TODO
 
@@ -100,7 +116,7 @@ https://create.arduino.cc/
 
 ----
 
-## Project 1 - Arduino "Hello World"
+## Project 1: Arduino Hello World
 
 ### What We'll Build
 
@@ -282,7 +298,7 @@ As an exercise, try building a circuit with multiple LEDs that flash in sequence
 
 ----
 
-## Project 2: Using a Range (Distance) Sensor
+## Project 2: Using a Distance Sensor
 
 ### What We'll Build
 
