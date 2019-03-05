@@ -12,7 +12,7 @@
 
 [Project 1 - Arduino Hello World](#project-1:-arduino-hello-world)
 
-[Project 1 - Using a Distance (Range) Sensor](#Project-2:-using-a-distance-sensor)
+[Project 1 - Using a Distance (Range) Sensor](#project-2:-using-a-distance-sensor)
 
 [Glossary and Reference](#glossary-and-reference)
 
