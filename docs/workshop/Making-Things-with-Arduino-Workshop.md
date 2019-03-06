@@ -148,7 +148,7 @@ Construct the LED circuit as shown in the diagram:
 
 1. Insert the LED into the breadboard as shown, so that the longer leg (the positive lead) is on the right.
 2. Connect a jumper wire to one of the ground (**GND**) pins of the Arduino, and the connect the other end of the wire to the same terminal strip (column) as the left leg of the LED (i.e. one of the holes in the same column as the LED's left leg).
-3. Connect the resistor in the breadboard so that on end is in the same terminal strip as the positive leg (right side) of the LED.
+3. Connect the resistor in the breadboard so that one end is in the same terminal strip as the positive leg (right side) of the LED.
 4. Connect  a jumper wire between pin 9 of the Arduino and right leg of the resistor.
 
 
@@ -163,11 +163,11 @@ Replace the contents of the Sketch in the editor with the following code:
 
 ```c
 void setup() {
-  	pinMode(9, OUTPUT);
+    pinMode(9, OUTPUT);
 }
 
 void loop() {
-  	digitalWrite(9, HIGH);    
+    digitalWrite(9, HIGH);    
   	delay(1000);  
   	digitalWrite(9, LOW);    
   	delay(1000);
@@ -182,7 +182,7 @@ Save the Sketch using <kbd>Ctrl</kbd>+S  (<kbd>Cmd</kbd>-S on a Mac).  You will 
 
 Now that the code is written, we need to compile it and get it onto the board.
 
-Make sure that you board is connected to your computer with a USB cable.  Then ensure that your board is selected and configured in the IDE using the <kbd>Tools -> Board</kbd> and <kbd>Tools -> Port</kbd> menus. 
+Make sure that your board is connected to your computer with a USB cable.  Then ensure that your board is selected and configured in the IDE using the <kbd>Tools -> Board</kbd> and <kbd>Tools -> Port</kbd> menus. 
 
 ![Board Selection](images/Select board.png)
 
@@ -200,7 +200,7 @@ Once the upload successfully completes, the Arduino will automatically start exe
 
 ### How It Works
 
-Arduino programs are written in the C or C++ programming languages.  One of the goals of the Arduino creators was to provide a programming environment that would be relatively easy for people with little or no programming experience to get things done quickly.  At the time, microcontrollers were expensive and were programmed with assembly language or C with complicated tools and processes.  The Arduino language is still C, but with wrapped inside a simple (relatively) IDE and compiler toolset, with a rich, but simple set of built-in functions.  Instead of having to worry about tons of C code that interacts with the Arduino's hardware, Arduino programs typically contain (or begin with) two simple C functions that the Arduino system calls.
+Arduino programs are written in the C or C++ programming languages.  One of the goals of the Arduino creators was to provide a programming environment that would be relatively easy for people with little or no programming experience to get things done quickly.  At the time, microcontrollers were expensive and were programmed with assembly language or C with complicated tools and processes.  The Arduino language is still C, but wrapped inside a relatively simple IDE and compiler toolset, with a rich, but simple set of built-in functions.  Instead of having to worry about tons of C code that interacts with the Arduino's hardware, Arduino programs typically contain (or begin with) two simple C functions that the Arduino system calls.
 
 ```c
 void setup() {

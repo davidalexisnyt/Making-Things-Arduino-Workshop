@@ -1,47 +1,47 @@
 /*
  *  DOORBELL UNIT - NRF24L01+
  *  ---------------------------------------------------------------------------
- *  This version of the doorbell unit uses the NRF24L01+ 2.4GHz radio to send
- *  ring notifications to the base unit.
- *  This implementation is the first version of the doorbell, with limitted
- *  functionality - i.e. Just a doorbell.  The initial vision was for a full
- *  door monitoring system with a motion sensor to wake the device, camera and
- *  audio interaction with the person at the door, a weather station capturing
- *  temperature, humidity, and barometric pressure.
+ *  This version of the doorbell uses the NRF24L01+ 2.4GHz radio to receive
+ *  ring notifications from the doorbell transmitter unit.
  *
  *  ATTRIBUTIONS
  *
- *  Uses the optimized RF24 library from TMRh20. https://github.com/TMRh20/RF24
+ *  Uses the excellent NRFLite library from  dparson55. https://github.com/dparson55/NRFLite
  *  ---------------------------------------------------------------------------
  */
 
 #include <avr/sleep.h>
 #include <avr/power.h>
 #include <SPI.h>
-#include <RF24_config.h>
-#include <nRF24L01.h>
-#include <RF24.h>
+#include <NRFLite.h>
 
 // Define pins used by NRF24L01+ for chip select and chip enable
 #define CE_PIN   9
 #define CSN_PIN  10
 
-// This is the address of the receiver.
-const uint64_t pipe = 0xE8E8F0F0E1LL;
+// This is the radio ID of the receiver.
+const static uint8_t DESTINATION_RADIO_ID  = 0;
 
-// The message sent to the base unit is an array or two integers - one identifying
-// the network (in this case, I used our house number), and another that identifies
-// the specific sending unit.  This allows for multiple units to be added to the
-// network - e.g. front door, back door, garage, etc.
-int message[2];
+// This is our transmitter ID. If we have more than one transmitter, each should have its own ID.
+const static uint8_t RADIO_ID           = 1;
 
-// Define the NRF24L01+ radio object
-RF24 radio(CE_PIN, CSN_PIN);
+const static uint8_t RADIO_CE_PIN   = 9;
+const static uint8_t RADIO_CSN_PIN  = 10;
 
-const int button = 3;
-const int led = 4;
-const int debounceDelay = 500;
-const int activityTimeout = 10000;
+const static int BUTTON = 3;
+const static int LED = 4;
+const static int DEBOUNCED_ELAY = 500;
+const static int ACTIVITY_TIMEOUT = 10000;
+
+struct RadioPacket // Any packet up to 32 bytes can be sent.
+{
+    uint8_t FromRadioId;
+    uint32_t OnTimeMillis;
+    uint32_t FailedTxCount;
+};
+
+NRFLite radio;
+RadioPacket radioData;
 
 volatile bool ringRequested = false;
 volatile int lastPressed = 0;
@@ -55,11 +55,20 @@ bool startingUp;
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void initializeComm()
 {
-    message[0] = 517;       // Network ID
-    message[1] = 1;         // Unit ID
+    if (!radio.init(RADIO_ID, RADIO_CE_PIN, RADIO_CSN_PIN))
+    {
+        #ifdef DEBUGMODE
+        Serial.println("Cannot communicate with radio");
+        #endif
 
-    radio.begin();
-    radio.openWritingPipe( pipe );
+        // Loop forever, rapidly flashing the LED in error mode
+        while (1) 
+        {
+            flashLed(1);
+        }
+    }
+    
+    radioData.FromRadioId = RADIO_ID;
 
     delay(50);
 }
@@ -68,7 +77,28 @@ void initializeComm()
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void sendNotify()
 {
-    radio.write( message, sizeof( message ) );
+    radioData.OnTimeMillis = millis();
+
+    #ifdef DEBUGMODE
+    Serial.print("Sending ");
+    Serial.print(radioData.OnTimeMillis);
+    Serial.println(" ms");
+    #endif
+
+    if (radio.send(DESTINATION_RADIO_ID, &radioData, sizeof(radioData)))
+    {
+        #ifdef DEBUGMODE
+        Serial.println("Successfully sent data to receiver");
+        #endif
+    }
+    else
+    {
+        #ifdef DEBUGMODE
+        Serial.println("Failed to send data to receiver!");
+        #endif
+
+        radioData.FailedTxCount++;
+    }
 
     flashLed(4);
 }
@@ -81,9 +111,9 @@ void flashLed(int repeat)
 {
     for (byte i = 0; i < repeat; i++)
     {
-        digitalWrite(led, LOW);
+        digitalWrite(LED, LOW);
         delay(100);
-        digitalWrite(led, HIGH);
+        digitalWrite(LED, HIGH);
         delay(100);
     }
 }
@@ -93,7 +123,7 @@ void flashLed(int repeat)
 void buttonPressed()
 {
     // Handle button debouncing by not handling a button press within 1 second of the previous press.
-    if ( !startingUp && !ringRequested && (millis() - lastPressed > debounceDelay) )
+    if ( !startingUp && !ringRequested && (millis() - lastPressed > DEBOUNCED_ELAY) )
     {
         ringRequested = true;
         ledOn = true;
@@ -114,7 +144,7 @@ void wakeUp()
     detachInterrupt(INT1);
 
     #ifdef DEBUGMODE
-        Serial.println("wake!");
+    Serial.println("wake!");
     #endif
 
     // Restore AVR peripherals used elsewhere in the code
@@ -123,7 +153,7 @@ void wakeUp()
     power_spi_enable();    // Enable SPI
 
     // Turn on the NRF24L01+ radio.
-    radio.powerUp();
+    // radio.powerUp();
 
     // Set up button to trigger an interrupt.
     attachInterrupt(INT1, buttonPressed, FALLING);
@@ -149,7 +179,7 @@ void goToSleep(void)
     interrupts();
     delay(50);
 
-    digitalWrite(led, LOW);
+    digitalWrite(LED, LOW);
 
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);
     sleep_enable();
@@ -181,15 +211,15 @@ void setup()
     ringRequested = false;
 
     #ifdef DEBUGMODE
-        Serial.begin(115200);
-        delay(10);
-        Serial.println();
-        Serial.println();
-        Serial.print("Configuring...");
+    Serial.begin(115200);
+    delay(10);
+    Serial.println();
+    Serial.println();
+    Serial.print("Configuring...");
     #endif
 
-    pinMode(button, INPUT_PULLUP);
-    pinMode(led, OUTPUT);
+    pinMode(BUTTON, INPUT_PULLUP);
+    pinMode(LED, OUTPUT);
 
     initializeComm();
 
@@ -236,10 +266,10 @@ void loop()
 
     int timePassed = millis() - lastPressed;
 
-    if ( timePassed > activityTimeout )
+    if ( timePassed > ACTIVITY_TIMEOUT )
     {
         flashLed(4);
-        digitalWrite(led, LOW);
+        digitalWrite(LED, LOW);
         ledOn = false;
 
         goToSleep();
