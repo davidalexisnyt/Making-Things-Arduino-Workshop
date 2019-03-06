@@ -695,9 +695,9 @@ void loop() {
 }
 
 void setColor(int red, int green, int blue) {
-  	analogWrite(redLedPin, red);
-  	analogWrite(greenLedPin, green);
-  	analogWrite(blueLedPin, blue);
+    analogWrite(redLedPin, red);
+    analogWrite(greenLedPin, green);
+    analogWrite(blueLedPin, blue);
 }
 ```
 
