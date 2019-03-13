@@ -1,5 +1,27 @@
 # Arduino (compatible) Boards
 
+Genuine Arduino
+
+Uno
+
+Leonardo
+
+More...
+
+
+
+AdaFruit boards
+
+
+
+Addicore Arduino UNO Clone
+
+
+
+Arduino Pro Micro
+
+Arduino Pro Mini
+
 
 
 ## Melbel Pico

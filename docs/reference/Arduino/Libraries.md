@@ -18,7 +18,6 @@
 ### NRF24L01
 
 * **NRFLite** https://github.com/dparson55/NRFLite: A library for working with NRF20L01 radios with very little code.
-* 
 
 
 

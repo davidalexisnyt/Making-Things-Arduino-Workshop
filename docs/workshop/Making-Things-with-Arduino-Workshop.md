@@ -52,6 +52,35 @@ The kit contains the following:
 We'll go over a short history of Arduino, Arduino boards, the development environment, and a 10,000 foot view of the Arduino ecosystem.
 
 > TODO
+>
+> - Graduate thesis - Wiring
+>
+> - Arduino creators "forked" the Wiring idea
+>
+> - Created for providing an inexpensive platform for electrical engineering students, with an emphasis on cost, ease of use, ease of programming, minimum programming experience
+>
+> - Arduino UNO
+>
+> - Leonardo
+>
+> - Open source hardware, sparked lots of "clones"
+>
+> - Today...
+>
+>     - Most popular platform for hobby enthusiasts as well as product prototyping, makers, cosplayers, students
+>     - Pebble smartwatch
+>     - Kurig coffee makers
+>     - Microsoft Hololens
+>     - Uses
+>         - home automation
+>         - robotics
+>         - drones
+>         - commercial products
+>     - Arduino boards made by lots of manufacturers and even DIY hobbyists
+>
+>     Rich ecosystem of Arduino-compatible sensors, add-ons (called Shields), components.
+>
+>     Alternative development environments - PlatformIO, Visual Studio / VS Code / Atom, and "code-free" tools like Scratch and Autodesk's Circuito.io.
 
 
 
@@ -64,6 +93,26 @@ We'll go over a short history of Arduino, Arduino boards, the development enviro
 ## The Basics of Arduino
 
 > TODO
+>
+> - The board
+>     - Go over the structure of a board - microcontroller, GPIO pins, voltage regulator, oscillator, serial comm, power.
+>     - Pins
+>         - Digital pins
+>         - PWM
+>         - Analog
+>         - Power
+>     - Power
+>         - USB
+>         - power plug
+>         - power pins
+>         - Battery
+>     - Electricity
+>         - +ve / -ve
+>         - Flow of electrons
+>         - Ohm's law - voltage, current, resistance
+>         - Common ground
+>         - Digital pins - 0V or 5V (or 3.3V for lower power boards)
+>         - Analog pins - range of 1023 values from 0 - 5 (or 3.3) volts
 
 
 
@@ -77,7 +126,19 @@ We'll go over a short history of Arduino, Arduino boards, the development enviro
 
 ### Working with a Breadboard
 
-![2 - Breadboard](images/2 - Breadboard.png)
+![Breadboard](images/Breadboard.png)
+
+**Breadboard Layout**
+
+One of the most important tools in the electronics prototyping toolbox is the **breadboard**.  It is used to build circuits and connect components in a non-permanent way. Once you've built and tested the circuit, you can then move on to soldering it in a more permanent, and more compact, way on **perfboard** or a specially designed printed circuit board (**PCB**). 
+
+A breadboard is like a pin cushion for connecting things, with a grid of holes that are connected electrically.  There are two parts to a breadboard - the main area consisting of a groups of **terminal strips** where components are inserted and arranged, and the **power rails** along the top and bottom.
+
+The main area consists of a two separate grids of holes arranged in usually 30  or more columns (labeled 1 through 30) of 5 holes (labeled a through e, and f through j), separated by a groove. Each column of 5 holes is called a terminal strip. All of the 5 holes (or **tie points**) in a column are connected together internally. 
+
+The power rails are along the top and bottom of the breadboard, and each consists of two strips of tie points.  The power strip (+ve voltage) is marked with a **+** and a red line.  The ground rail is marked with a **-** and a line that is either black or blue.
+
+Power and ground are typically fed to the breadboard from the 5V and GND pins on the Arduino, and the strips are then used to feed power and ground to components of your circuit.  We'll see this in action later.
 
 
 
@@ -85,10 +146,6 @@ We'll go over a short history of Arduino, Arduino boards, the development enviro
 
 > TODO
 >
-> - IDE
-> - Web Editor
-> - Drivers
-> - Ports
 > - Development Process
 > - Connecting your board, selecting the board and port in the IDE
 
@@ -102,15 +159,35 @@ We'll go over a short history of Arduino, Arduino boards, the development enviro
 
 ### Setting Up Your Arduino Environment
 
-> TODO
+The Arduino integrated development environment (IDE) is a key part of working with Arduino boards, since it is compiles your code, lets you know if there are any errors, provides libraries and tools to make interacting with boards seamless, uploads (programs) boards with your project's code, and provides a connection to your board for debugging.
 
-https://www.arduino.cc/en/Main/Software
+We must first download the software from the Arduino site ([https//www/arduino.cc](https//www/arduino.cc)) and install it.  Go to the site, and navigate to the Software > Downloads section (https://www.arduino.cc/en/Main/Software).  Arduino offers two options - the Arduino IDE (which is installed locally on your computer) and the Web Editor (which is a web-based, cloud-hosted environment).
 
-Download and install, or use web editor (requires signup)
+**Arduino IDE**
 
-https://create.arduino.cc/
+If you decide to use the Arduino IDE, scroll down to the "**Download the Arduino IDE**" section and click on the download for your computer (Windows, Mac, Linux).  Once the download is complete, launch the installer and follow the prompts to get the software installed.
+
+**Web Editor**
+
+The Web Editor is a great option, since all of your project code is stored up in the cloud and accessible from anywhere.  Using the Web Editor requires signing up for an account on the Arduino site at https://create.arduino.cc/.  It also requires the installation of a browser plugin and drivers that allow the browser to connect to boards connected to your computer in order to upload compiled code.  To install this plugin, click on the **Getting Started** block on the main create.arduino.cc site, scroll to the bottom of the page, and click on the link to install the plugin.  Once the plugin is installed, you're ready to go!
 
 
+
+#### Potential issues
+
+Windows and Linux PCs should be ready to roll, but Macs with HIgh Sierra or newer MacOS verison installed may have problems recognizing many Arduino boards. You will be able to tell is something is wrong if you connect your board to your computer, and a new entry does not show up in the Arduino IDE under the <kbd>Tools</kbd> > <kbd>Port</kbd> menu.
+
+1. Launch the Arduino IDE, without the board connected
+2. Go to the <kbd>Tools</kbd> > <kbd>Port</kbd> menu and take note of the items listed
+3. Connect your board, then go back to the <kbd>Tools</kbd> > <kbd>Port</kbd> menu
+
+If no new entry is listed, then your Mac does not know how to play well with others.
+
+If you have issues with the board we're using for this workshop, you may need to install drivers from the product page at https://www.addicore.com/Black-UNO-R3-p/ad308.htm.  The download link for the Mac driver is located in the Resources section of the page.  You may have to reboot after installing the driver.
+
+
+
+OK!  Enough yammering.  Let's get building!
 
 
 
@@ -124,7 +201,7 @@ The traditional first program someone writes when learning a new programming lan
 
 This diagram shows how what the circuit will look like.
 
-![Hello World circuit](images/1 - Arduino Hello World 2.png)
+![Hello World circuit](images/1 - Arduino Hello World.png)
 
 
 
@@ -266,13 +343,6 @@ Let's refactor the code a bit to make things easier and cleaner:
 ```c
 const int LED_PIN = 9;
 
-void flash(int pinToFlash, int duration) {
-    digitalWrite(pinToFlash, HIGH);
-    delay(duration); 
-    digitalWrite(pinToFlash, LOW);
-    delay(duration);
-}
-
 void setup() {
     pinMode(LED_PIN, OUTPUT);
 }
@@ -282,6 +352,13 @@ void loop() {
     flash(LED_PIN, 250);
     flash(LED_PIN, 1000);
 }
+          
+void flash(int ledPin, int duration) {
+    digitalWrite(ledPin, HIGH);
+    delay(duration); 
+    digitalWrite(ledPin, LOW);
+    delay(duration);
+}
 ```
 
 We've defined our LED pin on one place by creating a *constant*.  Now, if we want to use a different pin we need to change only one place in the code.
@@ -290,9 +367,67 @@ We've extracted the code that flashes the LED into its own function with paramet
 
 In the ```loop()``` function, we can now do some fancy stuff like do 2 rapid flashes followed by a longer flash.  Notice that the final delay() call was also removed, since the delay is built into the flash() function!
 
-**Going Even Further**
+### Going Even Further
 
-As an exercise, try building a circuit with multiple LEDs that flash in sequence.  Or build a traffic light with red, yellow, and green LEDs.
+Let's make Blinky a little more interactive.  We're going to learn how to use a button as input to control when the LED goes on.
+
+![](images/1 - Arduino Hello World 2.png)
+
+1. Insert a button onto the breadboard as shown.  There are four pins on the button - two on each side opposite each other.  Make sure that the button straddles the groove in the breadboard, such that both pins of a given pair are on the same side.
+2. Connect a resistor (a value between 10K to 20K is best) between one button pin and GND.
+3. On the same side of the button, use a jumper wire to connect the other button pin to the power rail.
+4. Use a jumper wire to connect the button pin that is opposite to the one with the resistor to pin 7 on the Arduino.
+
+Now let's refactor the code to light the LED when it detects that the button is pressed.
+
+```c
+const int LED_PIN = 7;
+const int BUTTON_PIN = 9;
+
+void setup()
+{
+    pinMode(LED_PIN, OUTPUT);
+    pinMode(BUTTON_PIN, INPUT);
+}
+
+void loop()
+{
+    if (digitalRead(BUTTON_PIN) == HIGH)
+    {
+        flash(LED_PIN, 250);
+    }
+    else
+    {
+        digitalWrite(LED_PIN, LOW);
+    }
+}
+
+void flash(int ledPin, int duration) {
+    digitalWrite(ledPin, HIGH);
+    delay(duration); 
+    digitalWrite(ledPin, LOW);
+    delay(duration);
+}
+```
+
+Compile and upload the sketch, and see how it works!
+
+
+
+### What We've Learned So Far
+
+So far, we have learned how to 
+
+- Use a breadboard
+- The basics about our Arduino board
+- How to define input and output components
+- Do some interesting things with LEDs
+- How to use a button
+- Writing a basic program and even refactoring it to make reusable functions
+
+Subsequent projects will build on this knowledge to give you a good understanding and give you the confidence to do amazing things!
+
+
 
 
 
@@ -307,12 +442,12 @@ For this project, we'll use the ultrasonic distance sensor to build a device lik
 The device will:
 
 - Turn on a green LED when we get within a certain maximum distance from the sensor
-- Turn on a yellow LED when we get within the "getting close" range
+- Flash the green LED when we get within the "getting close" range
 - Turn on a red LED when we've reached the minimum distance
 
 The final circuit for this project will look like this:
 
-![](images/1551669494477.png)
+![](images/Project 2.2 - Range Sensor.png)
 
 While building this project, we will also learn some new and important Arduino development skills.  We'll see how to use the Serial Monitor to see what's going on in our code while it's running on the Arduino.  We'll also learn how to use libraries (additional, 3rd party code) to simplify working with components like sensors.
 
@@ -320,12 +455,13 @@ While building this project, we will also learn some new and important Arduino d
 
 ### Getting Ready
 
-We're going to need:
+For this project, we're going to need the following:
 
 - Our Arduino board
 - 1 US-015 ultrasonic distance sensor
-- 3 LEDS (red, green, and yellow) or 1 RGB LED
-- 3 100K resistors
+- 1 green LED
+- 1 red LED
+- 2 100ohm resistors
 
 
 
@@ -479,7 +615,7 @@ Now let's look at the ```loop()``` function to see how we work with the sensor. 
 
 ### Going Further
 
-#### Using a Library
+#### Using a Library to Make Things Easier
 
 Our code so far is quite lengthy and complicated.  We need to know how to initialize the sensor, send an ultrasonic ping for a given length of time, wait for the echo, and understand the speed of sound so we can then figure out how far away an object is by calculating the time taken for the ultrasonic burst to echo back to the sensor. We even have some code to convert centimeters to inches.  
 
@@ -510,9 +646,6 @@ const int triggerPin = 13;
 const int echoPin = 12;
 const int maxDistance = 500;
 
-int inches = 0;
-int cm = 0;
-
 NewPing sonar(triggerPin, echoPin, maxDistance); 
 
 void setup() {
@@ -521,30 +654,26 @@ void setup() {
 
 void loop() {
     // Get the distance reading in centimeters
-    cm = sonar.ping_cm();
+    int distance = sonar.ping_cm();
 
-    // ..Or we if we want to get the distance reading in inches
-    inches = sonar.ping_in();
+    // ..Or we if we want to get the distance reading in inches use...
+    // int distance = sonar.ping_in();
    
     Serial.print("Distance: ");
-    Serial.print(cm);
-    Serial.print(" cm or ");
-    Serial.print(inches);
-    Serial.println(" inches");
+    Serial.print(distance);
+    Serial.println(" cm");
 
     // Wait for a short while before reading the sensor again
     delay(100);
 }
 ```
 
-Wow!  That's a lot cleaner, and we don't have to know the physics of sound!
-
 Notice a few interesting things about the new code:
 
 - We no longer need to initialize the triggerPin and echoPin in the ```setup()``` function.  Instead, we now simply supply triggerPin and echoPin to the new code on line 10:  ```NewPing sonar(triggerPin, echoPin, maxDistance);``` This declares a new variable called of type NewPing.  This is a class defined by the NewPing library that wraps all the details of working with ultrasonic sensors.  This line defines a new object called "sonar", which we have initialized with our sensor pins and the maximum distance we care about detecting.  (As an exercise, read the documentation on the NewPing library to find out why this is needed.)
-- We no longer need to deal with the inner workings of the sensor-  how to initialize it to get it ready for doing a ping/echo, etc, how to send a ping, and how to wait for a response, and how to calculate the distance based on the speed of sound.  We just simply ask it to give us a ping response in centimeters (line 18) or inches (line 21).
+- We no longer need to deal with the inner workings of the sensor - how to initialize it to get it ready for doing a ping/echo, etc, how to send a ping, and how to wait for a response, and how to calculate the distance based on the speed of sound.  We just simply ask it to give us a ping response in centimeters (line 15) or inches (as shown in the comment on line 18).
 
-If we only care about a reading in one system of measure (e.g. centimeters), we can reduce our interaction with the sensor to basically one line of code!
+Wow!  That's a lot cleaner, and we don't have to know the physics of sound!
 
 "Well, why didn't we just do that from the beginning?!", you may ask. Because, learning. :)
 
@@ -552,21 +681,18 @@ If we only care about a reading in one system of measure (e.g. centimeters), we 
 
 #### Adding Lights
 
-Great!  We have the distance sensor part of our project worked out.  But it's of no use if we need to hook up the serial monitor all the time.  Let's add some visual interactivity with our RGB LED.
-
-An RGB LED is basically three LEDs (red, green, and blue) squished into a single LED package.  This is why is has four legs.  There is one leg each for red, green, and blue, with the fourth leg being either the common cathode (-ve pin) or common anode (+ve pin), depending on the type of LED.  How do we know which pin in which?  The easy way is, as with any electronic components you use, check the product page, which usually has a link to the component's [data sheet](http://bit.ly/AC312-RGB-D-CA-5).  Component data sheets can get very technical, but they give you all the information you need about how the component works and how you should safely use it.  Aside from whether it's a common cathode or common anode type, the most important thing to know about an RGB LED is which leg is the common cathode/anode.
-
-We'll assume we're using a common cathode type.  This would mean that the common pin is the cathode (or -ve) pin, since we want to make sure we connect it to ground and not power!  You'll notice that the LED's pins have different lengths.  The common cathode (ground) pin is always the longest one. Once that's figured out, the pins are usually ordered as red, ground, green, then blue.
+Great!  We have the distance sensor part of our project worked out.  But it's of no use if we need to hook up the serial monitor all the time.  Let's add some visual interactivity with LEDs.
 
  Wire up the LED as shown here:
 
-![](images/1551669494477.png)
+![](images/Project 2.2 - Range Sensor.png)
 
-1. Insert the RGB LED into the breadboard, taking note of position of the longest leg - the ground (cathode/-ve) pin.
-2. Connect a jumper wire from the LED's ground pin to the ground rail.
-3. Connect a resistor between the leftmost LED pin (this is usually the red pin) and any free column of the breadboard.
-4. Connect a jumper wire (use a red one to keep things clear) between the other end of the resistor and pin 7 of the Arduino.
-5. Repeat the above 2 steps for the other LED pins, connecting the green LED pin to Arduino pin 6 and the blue LED pin to Arduino pin 5.
+1. Insert the red LED into the breadboard, taking note of position of the longer leg, which is +ve or pin. Insert the LED so that the longer leg is on the right, just to keep things clear.
+2. Connect a jumper wire from the LED's ground pin (left leg) to the ground rail.
+3. Connect a resistor to the LED's right pin as shown.
+4. Repeat this process to connect the green LED and a resistor as shown.
+5. Connect a jumper wire (use a red one to keep things clear) between the free end of the red LED's resistor and pin 7 of the Arduino.
+6. Connect a jumper wire (use a green one to keep things clear) between the free end of the green LED's resistor and pin 5 of the Arduino.
 
 
 
@@ -574,9 +700,9 @@ We'll assume we're using a common cathode type.  This would mean that the common
 
 Now lets modify our code to add support for the LEDs.  We can incorporate and expand on what we learned about LEDs in Project 1.  The new code includes 
 
-- Lines 6, 7, and 8, where we define the pins that we're going to use for the LEDs
-- Lines 18, 19, and 20 in ```setup()```, where we initialize the LED pins for output.
-- Lines 31 - 42, where we add some logic to determine when to light up the different colors
+- Lines 6 and 7, where we define the pins that we're going to use for the LEDs
+- Lines 15 and 16 in ```setup()```, where we initialize the LED pins for output.
+- Lines 28 - 39, where we add some logic to determine when to light up the different colors
 
 ```c
 #include <NewPing.h>
@@ -586,34 +712,31 @@ const int echoPin = 12;
 const int maxDistance = 500;
 const int redLedPin = 7;
 const int greenLedPin = 6;
-const int blueLedPin = 5;
-
-int inches = 0;
-int cm = 0;
 
 NewPing sonar(triggerPin, echoPin, maxDistance); 
 
-void setup() {
+void setup() 
+{
     Serial.begin (9600);
     
     pinMode(redLedPin, OUTPUT);
     pinMode(greenLedPin, OUTPUT);
-    pinMode(blueLedPin, OUTPUT);
 }
 
-void loop() {
+void loop() 
+{
     // Get the distance reading in centimeters
-    cm = sonar.ping_cm();
+    int distance = sonar.ping_cm();
    
     Serial.print("Distance: ");
-    Serial.print(cm);
+    Serial.print(distance);
     Serial.println(" cm");
 
-    if (cm > maxDistance) {
+    if (distance > maxDistance) {
         digitalWrite(redLedPin, LOW);
         digitalWrite(greenLedPin, LOW);
     }
-    else if (cm > 50) {
+    else if (distance > 10) {
         digitalWrite(redLedPin, LOW);
         digitalWrite(greenLedPin, HIGH);
     }
@@ -629,11 +752,9 @@ void loop() {
 
 Compile and upload the code, and see how it works.  Notice that the logic works as follows:
 
-- Turns off the LED if no object is detected, or the detected object is beyond the maximum distance we set (currently 500 centimeters).
-- Turns on the green LED when an object is detected between 50 centimeters and our maximum distance.
-- Turns on the red LED if the object is closer than 50 centimeters.
-
-Two colors?  Boring, I know.  We'll address that later. 
+- Turns off the LED if no object is detected, or the detected object is beyond the maximum distance we care about  (currently 500 centimeters).
+- Turns on the green LED when an object is detected between 10 centimeters and our maximum distance.
+- Turns on the red LED if the object is closer than 10 centimeters.
 
 Notice that in order to turn on one color (e.g. red), we need to set its value to HIGH, but also set the value of the other LEDs to LOW to ensure that they are off.
 
@@ -643,7 +764,7 @@ Can you tell what the code would look like if we had to flip between three LEDs?
 
 #### Refactor Using PWM
 
-Ok, so our proximity alert / parking assistant / personal space violation detector project works nicely!  But the code can be cleaner, while adding the cool capabilities, like pulsing instead of flashing, fading in and out, varying brightness, and any color you can imagine.
+Ok, so our proximity alert / parking assistant / personal space violation detector project works nicely!  But the code can be cleaner, while adding the cool capabilities, like pulsing or fading the LEDs instead of flashing, or varying brightness.
 
 How? We can use a technique called pulse width modulation ([PWM](https://www.arduino.cc/en/Tutorial/PWM)). This technique basically allows a digital device (like an LED) that only knows about ON/OFF to behave like if it handles a range of values like an analog device.  Essentially, we can vary the brightness of an LED by rapidly turning it on and off so that the total time that it is on in a given second (for example) varies.  If the average time the LED is *on* is low, the there is collectively less light being emitted, and we perceive the LED as being dim.  As the average amount time the LED spends being *on* gets longer, we perceive the LED as being brighter.  You can read more about PWM on your own later, but it can also be used to vary the speed of motors.
 
@@ -657,7 +778,6 @@ const int echoPin = 12;
 const int maxDistance = 500;
 const int redLedPin = 7;
 const int greenLedPin = 6;
-const int blueLedPin = 5;
 
 int inches = 0;
 int cm = 0;
@@ -669,7 +789,6 @@ void setup() {
     
     pinMode(redLedPin, OUTPUT);
     pinMode(greenLedPin, OUTPUT);
-    pinMode(blueLedPin, OUTPUT);
 }
 
 void loop() {
@@ -694,10 +813,9 @@ void loop() {
     delay(100);
 }
 
-void setColor(int red, int green, int blue) {
+void setColor(int red, int green) {
   	analogWrite(redLedPin, red);
   	analogWrite(greenLedPin, green);
-  	analogWrite(blueLedPin, blue);
 }
 ```
 
@@ -711,7 +829,116 @@ Our project currently uses just green and red LEDs.  Let's add a third color for
 
 #### Challenge 2
 
-Make the LED flash red when the detected distance is within the "too close for comfort" zone.  Or maybe blink green for far, blink yellow for near, and solid red for stop. Hint:  We flashed our LED in the first project!  Build on that code.
+Separate LEDs are OK. But an RGB LED lets us to some really fun stuff by creating any color we want by mixing different combinations or red, green, and blue!  An RGB LED is basically three LEDs (red, green, and blue) squished into a single LED package. It has four legs - one leg each for red, green, and blue, with the fourth leg being either the common cathode (-ve pin) or common anode (+ve pin), depending on the type of LED.  How do we know which pin in which?  The easy way is, as with any electronic components you use, check the product page, which usually has a link to the component's [data sheet](http://bit.ly/AC312-RGB-D-CA-5).  Component data sheets can get very technical, but they give you all the information you need about how the component works and how you should safely use it.  Aside from whether it's a common cathode or common anode type, the most important thing to know about an RGB LED is which leg is the common cathode/anode.
+
+Purchase an RGB LED and see what you can do to spice up this project!
+
+#### Challenge 3
+
+Build a "wireless measuring tape" that displays the distance to an object on a little screen.  For this one, you will need to get a display like the [SD-1306 OLED](https://www.addicore.com/OLED-128x64-Monochrome-p/ad304.htm) display.  This is somewhat of an intermediate-to-advanced-level project, but once you're comfortable with working with Arduino, it should not be too hard to achieve!
+
+
+
+----
+
+# Project 3: Monitoring Your Environment
+
+## What We'll Build
+
+One of the most popular things people build when getting into the world of Internet of Things (IoT) is a weather station.  This neat device sits outside, collecting data on current temperature and humidity levels, and even barometric pressure.  This data is then transmitted wirelessly to a base station inside your house, from where it is aggregated, turned into useful data about weather trends, and even performing forecasting based on historical trends.  Many of these projects actually transmit data to cloud-hosted services that perform aggregation and analysis of data from multiple sensor locations.
+
+Ok, we're not actually going to build a complete weather station system, but we will learn to use one of the basic sensor devices of a weather station - a digital humidity and temperature (DHT) sensor.
+
+![Related image](images/temp_sens_arduino.jpg)
+
+Then we will discuss how you can take this project further to create a full-blown weather station!
+
+
+
+## Getting Ready
+
+For this project, we're going to need the following:
+
+- Arduino board
+- DHT11 sensor
+- Jumper wires
+- 1 resistor
+
+
+
+## Build It
+
+**Wire Up The Circuit**
+
+1. Connect the 5V and GND pins to the power and ground rails of the breadboard, as was done in previous projects.
+2. Insert the DHT11 sensor into the breadboard.
+3. Connect pin 1 of the DHT11 sensor (leftmost pin) to the power rail with a jumper wire.
+4. Connect pin 4 of the DHT11 sensor (rightmost pin) to the ground rail with a jumper wire.
+5. Connect pin 2 of the DHT11 sensor to pin 2 of Arduino with a jumper wire.  This is the data pin from the sensor.
+6. Insert a resistor (10 - 20K) between the DHT11 sensor's pin 2 (data) and pin 4 (power) pin. 
+
+
+
+**Write The Code**
+
+This should be the entire circuit.  Now let's write the code.  So, we've hopefully learned our lesson from Project 2 about using libraries to make working with sensors easy.  For this project, we're going to be using a library from Adafruit, written by Limor "Lady Ada" Fried herself!
+
+Start a new Sketch in the Arduino IDE, and open the Library Manager.  (Remember, we learned how to do this in the previous project?)  In the search box, enter "**DHT sensor**".  This should show a listing for the Adafruit library.  Click <kbd>Install</kbd>.  The library actually makes use of another Adafruit library, so we'll need to also install that one.  Enter "**Adafruit_Sensor**" in the search box.  This will bring back a long list of libraries, but we want one simply titled "Adafruit Unified Sensor".  Scroll through the list until you find it, then install the library.  Close the Library Manager.
+
+Now enter the following code in the Sketch editor:
+
+```c
+#include <DHT.h>
+#include <DHT_U.h>
+
+#define DHTPIN 2
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+    Serial.begin(9600);
+    Serial.println(F("Starting temperature and humidity readings"));
+
+    dht.begin();
+}
+
+void loop() {
+    delay(2000);
+
+    float humidity = dht.readHumidity();    
+    float temperature = dht.readTemperature(true);
+
+    if (isnan(humidity) || isnan(temperature)) {
+        Serial.println("Failed to read from DHT sensor!");
+        return;
+    }
+
+    float heatIndex = dht.computeHeatIndex(temperature, humidity);
+
+    Serial.print(F("Humidity: "));
+    Serial.print(humidity);
+    Serial.print(F("%  Temperature: "));
+    Serial.print(temperature);
+    Serial.print(F("°F  Heat index: "));
+    Serial.print(heatIndex);
+    Serial.println(F("°F"));
+}
+```
+
+Compile and upload the code to the Arduino, then open the Serial Monitor.  Make sure that the speed is set to 9,600 baud, since that's what our Sketch has set in the Serial.begin() call. You should start seeing output showing humidity, temperature, and heat index readings!
+
+
+
+## How It Works
+
+
+
+
+
+## Going Further
+
+
 
 
 
@@ -721,15 +948,33 @@ Make the LED flash red when the detected distance is within the "too close for c
 
 # Glossary and Reference
 
+Arduino
+
+Breadboard
+
 [Diodes](https://learn.adafruit.com/circuit-playground-d-is-for-diode/learn-more) are devices that only allow current to flow in one direction - much like a sewage line valve that allows stuff to flow from your house into the sewer, but prevents stuff from the sewer backing up into your house.
+
+ESP8266 / ESP32
 
 
 
 ## Resources
 
+https://www.tinkercad.com/dashboard?type=circuits
+
+https://learn.sparkfun.com/tutorials/what-is-an-arduino/all
+
+https://learn.sparkfun.com/tutorials/what-is-a-circuit
+
+
+
+https://acadgild.com/blog/everything-need-know-arduino
+
+https://makezine.com/2011/02/10/why-the-arduino-won-and-why-its-here-to-stay/
+
 https://www.circuito.io/app
 
-https://www.tinkercad.com/dashboard?type=circuits
+
 
 
 
@@ -737,5 +982,16 @@ Books and tutorials on basic C programming for Arduino.
 
 Book:  Mastering Arduino
 
-AdaFruit and Sparkfun
+AdaFruit
 
+Sparkfun
+
+
+
+Shopping
+
+- Addicore.com
+- AdaFruit.com
+- Amazon
+- Microcenter
+- EBay
