@@ -89,11 +89,9 @@ Here are just a few products you might know that started as an idea and prototyp
 
 
 
-![Related image](images/wp-content%2Fgallery%2Fpebble-watch-the-4-years-before-kickstarter%2Fpebble_2.jpg%2Ffit-in__850x850.jpg)
+![Related image](images/pebblewatch.jpg)
 
 **Pebble Smartwatch**
-
-Amazon Dash buttons and many "smart outlets" are actually built using ESP8266 WiFi boards, which you can program using the Arduino IDE or even Python.
 
 
 
