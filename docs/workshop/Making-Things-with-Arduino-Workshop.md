@@ -203,6 +203,8 @@ If no new entry is listed, then your Mac does not know how to play well with oth
 
 If you have issues with the board we're using for this workshop, you may need to install drivers from the product page at https://www.addicore.com/Black-UNO-R3-p/ad308.htm.  The download link for the Mac driver is located in the Resources section of the page.  You may have to reboot after installing the driver.
 
+> **NOTE:** Some people had issues with the driver from the Addicore site on MacOS High Sierra.  They had better luck with the instructions from this site:  https://github.com/adrianmihalko/ch340g-ch34g-ch34x-mac-os-x-driver
+
 
 
 OK!  Enough yammering.  **Let's get building!**
