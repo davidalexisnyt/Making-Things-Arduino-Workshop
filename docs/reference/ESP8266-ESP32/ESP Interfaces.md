@@ -20,9 +20,22 @@ Boot modes are controlled as follows:
 
 https://www.youtube.com/watch?v=4tIopaejG-s
 
-Create a Reset button that pulls the REST pin to ground when pressed.  Normally, the reset pin can be pulled to high.
+https://www.circuito.io/blog/programming-esp8266-12e/
 
-Create a Program button that pulls GPIO0 to ground.  To program, press the reset and program buttons, then release the reset button about .5 seconds before releaseing the program button.
+- GPIO0 pulled up using 10K resistor.
+- GPIO2 pulled up using 10K resistor.
+- GPIO15 pulled down using 10K resistor.
+- EN pulled up using 10K resistor.
 
-![Image result for esp8266 i2c](http://apps.incalcando.com/wp-content/uploads/2017/05/ESP-LSM9D2.png)
+
+
+**Mode switching**
+
+Create a **Reset button** that pulls the Resetpin to ground when pressed.  Normally, the reset pin can be pulled to high.
+
+Create a **Program button** that pulls GPIO0 to ground.  To program, press the reset and program buttons, then release the reset button about .5 seconds before releaseing the program button.
+
+![1552962281932](images/1552962281932.png)
+
+
 

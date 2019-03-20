@@ -32,9 +32,11 @@ https://mellbell.cc/products/pico
 
 ![img](Boards.assets/PICO_Held_1024x1024@2x.jpg)
 
-![img](Boards.assets/PICO_Pin_Mapping_4db882a3-1aea-4345-8204-dfb4df844949.png)
 
 
+![img](images/134f701938f24da24cdf938d2177ccd0_original.png)
+
+![img](images/d17e81ae6249e4e17a92b42baca1c1da_original.png)
 
 
 

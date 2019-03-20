@@ -1,4 +1,4 @@
-# Making Things with Arduino Workshop
+Making Things with Arduino Workshop
 
 #### Table of Contents
 
@@ -105,7 +105,9 @@ The Arduino platform is the most popular DIY electronics platform for building h
 
 ### The Board
 
-![Arduino](images/Arduino.png)
+![Related image](images/UnoPinout.jpg)
+
+
 
 - Main components
     - Atmel microcontroller - The Uno is built around the Atmega328 microcontroller
