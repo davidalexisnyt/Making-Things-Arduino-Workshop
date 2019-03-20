@@ -1020,6 +1020,83 @@ You can make it a real IoT device that sits outside in your yard, sensing weathe
 
 
 
+----
+
+## Project 4
+
+### Motion Sensor
+
+#### What We'll Build
+
+Who goes there!?  
+
+![PIR Sensor](images/Project 4 - Motion Sensor.png)
+
+
+
+#### Getting Ready
+
+
+
+#### Build It
+
+
+
+**Writing The Code**
+
+
+
+```c
+const int ledPin = 13;
+const int pirPin = 2;
+int pirState = LOW;
+int value = 0;
+ 
+void setup() {
+    pinMode(ledPin, OUTPUT);
+    pinMode(pirPin, INPUT);
+   
+    Serial.begin(9600);
+}
+ 
+void loop(){
+    // Read the PIR sensor value.
+    // It will be HIGH when the sensor detects movement, otherwise LOW.
+    value = digitalRead(pirPin);
+    
+    if (value == HIGH) 
+    {
+        digitalWrite(ledPin, HIGH);
+        
+        // This if statement construct is so that we only print output when the
+        // sensor value changes, not every time we read it.
+        if (pirState == LOW) {
+            Serial.println("Motion detected!");
+            pirState = HIGH;
+        }
+    } 
+    else 
+    {
+        digitalWrite(ledPin, LOW); // turn LED OFF
+        
+        if (pirState == HIGH){
+            Serial.println("Motion ended!");
+            pirState = LOW;
+        }
+    }
+}
+```
+
+
+
+#### How It Works
+
+
+
+#### Going Further
+
+
+
 
 
 -----
