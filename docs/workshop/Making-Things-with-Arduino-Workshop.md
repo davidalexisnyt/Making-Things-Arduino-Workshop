@@ -69,7 +69,7 @@ https://www.youtube.com/watch?v=nL34zDTPkcs
 
 
 
-## What can be done with Arduino
+## What can be done with Arduino?
 
 What can you to with Arduino or DIY electronics in general?  Anything you can imagine!  
 
@@ -135,7 +135,7 @@ The Arduino platform is the most popular DIY electronics platform for building h
 
 One of the most important tools in the electronics prototyping toolbox is the **breadboard**.  It is used to build circuits and connect components in a non-permanent way. Once you've built and tested the circuit, you can then move on to soldering it in a more permanent, and more compact, way on **perfboard** or a specially designed printed circuit board (**PCB**). 
 
-A breadboard is like a pin cushion for connecting things, with a grid of holes that are connected electrically.  There are two parts to a breadboard - the main area consisting of a groups of **terminal strips** where components are inserted and arranged, and the **power rails** along the top and bottom.
+A breadboard is like a pin cushion for connecting things, with a grid of holes that are connected electrically.  There are two parts to a breadboard - the main area consisting of groups of **terminal strips** where components are inserted and arranged, and the **power rails** along the top and bottom.
 
 The main area consists of a two separate grids of holes arranged in usually 30  or more columns (labeled 1 through 30) of 5 holes (labeled a through e, and f through j), separated by a groove. Each column of 5 holes is called a terminal strip. All of the 5 holes (or **tie points**) in a column are connected together internally. 
 
@@ -177,7 +177,7 @@ However, a wise person once said that experience is directly proportional to the
 
 ### Setting Up Your Arduino Environment
 
-The Arduino integrated development environment (IDE) is a key part of working with Arduino boards, since it is compiles your code, lets you know if there are any errors, provides libraries and tools to make interacting with boards seamless, uploads (programs) boards with your project's code, and provides a connection to your board for debugging.
+The Arduino integrated development environment (IDE) is a key part of working with Arduino boards, since it compiles your code, lets you know if there are any errors, provides libraries and tools to make interacting with boards seamless, uploads (programs) boards with your project's code, and provides a connection to your board for debugging.
 
 We must first download the software from the Arduino site ([https//www/arduino.cc](https//www/arduino.cc)) and install it.  Go to the site's Downloads section (https://www.arduino.cc/en/Main/Software).  Arduino offers two options - the Arduino IDE (which is installed locally on your computer) and the Web Editor (which is a web-based, cloud-hosted environment).
 
@@ -193,7 +193,7 @@ The Web Editor is a great option, since all of your project code is stored up in
 
 #### Potential issues
 
-Windows and Linux PCs should be ready to roll, but Macs with HIgh Sierra or newer MacOS verison installed may have problems recognizing many Arduino boards. You will be able to tell is something is wrong if you connect your board to your computer, and a new entry does not show up in the Arduino IDE under the <kbd>Tools</kbd> > <kbd>Port</kbd> menu.
+Windows and Linux PCs should be ready to roll, but Macs with High Sierra or newer MacOS version installed may have problems recognizing many Arduino boards. You will be able to tell is something is wrong if you connect your board to your computer, and a new entry does not show up in the Arduino IDE under the <kbd>Tools</kbd> > <kbd>Port</kbd> menu.
 
 1. Launch the Arduino IDE, without the board connected
 2. Go to the <kbd>Tools</kbd> > <kbd>Port</kbd> menu and take note of the items listed
@@ -277,7 +277,7 @@ Save the Sketch using <kbd>Ctrl</kbd>+S  (<kbd>Cmd</kbd>-S on a Mac).  You will 
 
 
 
-**Upload The Code**
+**Upload the Code**
 
 Now that the code is written, we need to compile it and get it onto the board.
 
@@ -313,7 +313,7 @@ void loop() {
 
 The ```setup()``` function runs when the Arduino is first powered on or reset, and runs only once. It is used to do initialization and anything else that should only be performed once.
 
-The ```loop()``` function repeats continuously, and is the actual "meat" of your project.  It is basically an infinite loop that runs from to to bottom, then starts at the top again.  This is important to keep in mind when thinking about how you structure the code in this function and how it affects the behavior of your project.
+The ```loop()``` function repeats continuously, and is the actual "meat" of your project.  It is basically an infinite loop that runs from top to bottom, then starts at the top again.  This is important to keep in mind when thinking about how you structure the code in this function and how it affects the behavior of your project.
 
 When an Arduino Sketch, as projects are called, is compiled, it is first translated to pure C, combined with all the built-in code and wrappers Arduino provides, then finally compiled to a "hex" file specifically for the particular board you select.  Hex files contain the raw, binary executable code that the microprocessor executes.
 
@@ -348,7 +348,7 @@ The next line of code says ```digitalWrite(9, LOW)```, which sets pin 9 to the *
 
 The effect of these 3 lines of code is that to flash the LED for 1 second by turning it on, waiting 1 second, then turning it off.
 
-But then, why do we need that second call to ```delay(1000)``` at the end of the ```loop()``` function?  Remember that the ```loop()``` function runs repeatedly, so as soon as the last line of code is run, it will start again at the first line.  If there was no delay after we turn off the LED, the effect will be that it would be off for a tiny fraction of a second before the first line runs and turns it back on.  To the human eye, the LED would be always on!.
+But then, why do we need that second call to ```delay(1000)``` at the end of the ```loop()``` function?  Remember that the ```loop()``` function runs repeatedly, so as soon as the last line of code is run, the program will start again at the first line.  If there was no delay after we turn off the LED, the effect will be that it would be off for a tiny fraction of a second before the first line runs and turns it back on.  To the human eye, the LED would be always on!
 
 Experiment with the value of the last delay() call - e.g. delay(2000), delay(100), etc - to see how it affects the behavior of the LED.
 
@@ -356,7 +356,7 @@ Experiment with the value of the last delay() call - e.g. delay(2000), delay(100
 
 #### Going Further
 
-The code we have for the "Hello World" blinky LED is ok, but we can do better.  What if we want to do something like 4 rapid flashes followed by a long delay, or a number of rapid flashed punctuated by a longer flash?  Or what if we have multiple LEDs we want to flash?  The code could become long and unwieldy pretty quickly.
+The code we have for the "Hello World" Blinky LED is ok, but we can do better.  What if we want to do something like 4 rapid flashes followed by a long delay, or a number of rapid flashed punctuated by a longer flash?  Or what if we have multiple LEDs we want to flash?  The code could become long and unwieldy pretty quickly.
 
 Let's refactor the code a bit to make things easier and cleaner:
 
@@ -381,7 +381,7 @@ void flashLed(int ledPin, int duration) {
 }
 ```
 
-We've defined our LED pin on one place by creating a *constant*.  Now, if we want to use a different pin we need to change only one place in the code. Plus we don't have confusing code everywhere referring to "9".
+We've defined our LED pin on one place by creating a *constant*.  Now, if we want to use a different pin, we need to change only one place in the code. Plus, we don't have confusing code everywhere referring to "9".
 
 We've extracted the code that flashes the LED into its own function with parameters to specify the pin we want to flash and how long the flash should be.  This allows us to easily add flashes in our code with a single line of code instead of 4.
 
@@ -401,8 +401,8 @@ Let's make Blinky a little more interactive.  We're going to learn how to use a 
 Now let's refactor the code to light the LED when it detects that the button is pressed.
 
 ```c
-const int LED_PIN = 7;
-const int BUTTON_PIN = 9;
+const int LED_PIN = 9;
+const int BUTTON_PIN = 7;
 
 void setup()
 {
@@ -493,7 +493,7 @@ The first step of our build will look like this:
 
 
 
-**Wire Up The Circuit**
+**Wire Up the Circuit**
 
 1. Wire up the power from the Arduino to the breadboard.
     1. Connect a red jumper wire from the **5V** pin on the Arduino to the +ve (red) power rail on the breadboard
@@ -502,15 +502,19 @@ The first step of our build will look like this:
 3. Connect a jumper wire from the +ve power rail to the sensor's VCC pin.
 4. Connect a jumper wire from the -ve power rail to the sensor's Gnd pin.
 
+> **NOTE:**  The position of the sensor in the breadboard as depicted is not ideal, since the wires get in the way of the sensor's ultrasonic waves, which may lead to funky readings.  It is better to flip the sensor around so that it is facing away from any obstruction.  The important thing is that the wiring is correct: power is connected to the VCC pin, ground to the GND pin, the trigger pin connected to the Arduino's pin 10, and the echo pin connected to the Arduino's pin 9.  The pins are labeled on the sensor, so it is easy to check your wiring.
+
+> **NOTE:** The original diagram and code had the trigger pin connected to the Arduino pin 13.  This turned out to potentially cause weird readings.  This is possibly because pin 13 is internally connected to the Arduino's on-board LED, and maybe this generated a bit of noise on the pin.  Switching to other pins seemed to have cleared up this issue.  This documentation was updated to use pins 9 and 10 instead of 12 and 13.
 
 
-**Write The Code**
+
+**Write the Code**
 
 Create a new Sketch in the Arduino IDE and add the following code.  We'll go over how this code works later.
 
 ```c
-const int triggerPin = 13;
-const int echoPin = 12;
+const int triggerPin = 10;
+const int echoPin = 9;
 
 int inches = 0;
 int cm = 0;
@@ -527,7 +531,7 @@ void loop() {
     digitalWrite(triggerPin, LOW);
     delayMicroseconds(2);
 
-    // Send an ultarasonic ping for 10 microseconds
+    // Send an ultrasonic ping for 10 microseconds
     digitalWrite(triggerPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(triggerPin, LOW);
@@ -554,7 +558,7 @@ void loop() {
 
 
 
-**Upload The Code**
+**Upload the Code**
 
 Compile and upload the code to your Arduino.  Once the upload is done, how do we know what it's doing?  We can't see anything happening!  This is where the Arduino IDE's Serial Monitor comes into play.
 
@@ -577,13 +581,13 @@ This code is setting up a connection  to the Arduino at a speed of 9,600 baud.  
 
 ![1551230554832](images/SerialMonitor3.png)
 
-If all is well, our sensor should be reading the distance of of whatever is directly in front of it and we should be seeing the distances being printed out!  Experiment a bit by moving an object towards and away from the sensor to see what happens.
+If all is well, our sensor should be reading the distance of whatever is directly in front of it and we should be seeing the distances being printed out!  Experiment a bit by moving an object towards and away from the sensor to see what happens.
 
 
 
 #### How It Works
 
-This little project has introduced two new things so far - debugging Arduino projects using the Serial Monitor, and working with a cool sensor!  Let's dig into each one so see how they work.
+This little project has introduced two new things so far - debugging Arduino projects using the Serial Monitor, and working with a cool sensor!  Let's dig into each one to see how they work.
 
 ##### Serial Monitor
 
@@ -601,7 +605,7 @@ This line in the setup() function sets up our serial connection.  ```Serial.begi
 
 Remember, as we discussed before, that the Serial Monitor in the Arduino IDE must be set to the same speed.
 
-Once our connection is set up, we can then sprinkle ```Serial.print()``` and ```Serial.println()``` calls anywhere in our code where we would like to send interesting information to the Serial Monitor for us to see.  We see this in action from lines 33 to 37.  We first call ```Serial.print("Distance: ");```, which just writes that text to the Serial Monitor.  Then we call ```Serial.print(cm);```, which writes out the value that is stored in the ```cm``` variable. The next lines writes out the text " cm or ", then the value of the ```inches``` variable, then finally the text " inches".  Important to note here is that the first four lines call ```Serial.print()```, while the last line calls ```Serial.println()```.  The difference is that "print()" writes what it's told and leaves the "cursor" on the same line.  "println()", on the other hand, writes what it's told, then goes to the next line, like hitting <kbd>Enter</kbd> at end of a line of text.
+Once our connection is set up, we can then sprinkle ```Serial.print()``` and ```Serial.println()``` calls anywhere in our code where we would like to send interesting information to the Serial Monitor for us to see.  We see this in action from lines 33 to 37.  We first call ```Serial.print("Distance: ");```, which just writes that text to the Serial Monitor.  Then we call ```Serial.print(cm);```, which writes out the value that is stored in the ```cm``` variable. The next lines write out the text " cm or ", then the value of the ```inches``` variable, then finally the text " inches".  Important to note here is that the first four lines call ```Serial.print()```, while the last line calls ```Serial.println()```.  The difference is that "print()" writes what it's told and leaves the "cursor" on the same line.  "println()", on the other hand, writes what it's told, then goes to the next line, like hitting <kbd>Enter</kbd> at end of a line of text.
 
 Using Serial.print() or Serial.println() is a good way to see what the value of variables are at any given point, or to simply to see where the program is and what it is doing.
 
@@ -611,7 +615,7 @@ The distance sensor uses the same technique as dolphins or submarines - it sends
 
 Now we're experts on sonar, so we can look at the code to see how our sensor works!
 
-So we know that we need to send a ping, and receive an echo.  Therefore, the sensor contains a sound generator (called a trigger) and what's basically a microphone to detect the echoed sound.  The sensor has two pins for controlling these functions - a trigger pin, which is our output, and an echo pin, from which we can read our reply or input.  The code on lines 1 and 2 define constants representing our trigger pin (pin 13) and echo pin (pin 12).  These can be any of the Arduino's available digital pins, but 12 and 13 are just the ones we're using in this project.
+So, we know that we need to send a ping, and receive an echo.  Therefore, the sensor contains a sound generator (called a trigger) and what's basically a microphone to detect the echoed sound.  The sensor has two pins for controlling these functions - a trigger pin, which is our output, and an echo pin, from which we can read our reply or input.  The code on lines 1 and 2 define constants representing our trigger pin (pin 10) and echo pin (pin 9).  These can be any of the Arduino's available digital pins, but 9 and 10 are just the ones we're using in this project.
 
 As we discussed previously, we need to tell the Arduino how we intend to use pins.  Where do we do this type of initialization or setup work?  That's right - the ```setup()``` function.  Looking at ```setup()```, we see two lines of code that do this:
 
@@ -624,9 +628,9 @@ These configure our trigger pin as OUTPUT, and our echo pin as INPUT.
 
 Now let's look at the ```loop()``` function to see how we work with the sensor.  Notice:
 
-- First, we must initialize the sensor and tell to to get ready to do a ping/echo session.  We do this with a ```digitalWrite(triggerPin, LOW);```, then a delay for a short time to give the sensor enough time to initialize.
+- First, we must initialize the sensor and tell to get ready to do a ping/echo session.  We do this with a ```digitalWrite(triggerPin, LOW);```, then a delay for a short time to give the sensor enough time to initialize.
 - We then turn on the trigger pin by setting it to HIGH, wait 10 milliseconds, then turn it off by setting it to LOW.  This has the effect of sending 10 millisecond ultrasonic burst.
-- Next we have a call to ```pulseIn(echoPin, HIGH);```, which says "Read the echoPin until it gets turned on (set to HIGH)", which will happen when the sensor detects the echo.  What gets returned from this call is the duration between the ultrasonic burst and when it heard the echo.
+- Next, we have a call to ```pulseIn(echoPin, HIGH);```, which says "Read the echoPin until it gets turned on (set to HIGH)", which will happen when the sensor detects the echo.  What gets returned from this call is the duration between the ultrasonic burst and when it heard the echo.
 - Oh, we're not done yet!  Now we need to break out our high school physics to figure out the distance from the duration using the speed of sound:  ```cm = 0.01723 * pingTime;```.  This gives us the distance in centimeters, because, inches are so last century!  Ok, fine.  For the Americans in the room, line 31 converts centimeters to inches:  ```inches = (cm / 2.54);```
 
 
@@ -660,8 +664,8 @@ Now let's refactor our code to use the library.  The final code should look some
 ```c
 #include <NewPing.h>
 
-const int triggerPin = 13;
-const int echoPin = 12;
+const int triggerPin = 10;
+const int echoPin = 9;
 const int maxDistance = 500;
 
 NewPing sonar(triggerPin, echoPin, maxDistance); 
@@ -714,9 +718,9 @@ Great!  We have the distance sensor part of our project worked out.  But it's of
 
 
 
-**Modify The Code**
+**Modify the Code**
 
-Now lets modify our code to add support for the LEDs.  We can incorporate and expand on what we learned about LEDs in Project 1.  The new code includes 
+Now let's modify our code to add support for the LEDs.  We can incorporate and expand on what we learned about LEDs in Project 1.  The new code includes 
 
 - Lines 6 and 7, where we define the pins that we're going to use for the LEDs
 - Lines 15 and 16 in ```setup()```, where we initialize the LED pins for output.
@@ -782,20 +786,23 @@ Can you tell what the code would look like if we had to flip between three LEDs?
 
 ##### Refactor Using PWM
 
-Ok, so our proximity alert / parking assistant / personal space violation detector project works nicely!  But the code can be cleaner, while adding the cool capabilities, like pulsing or fading the LEDs instead of flashing, or varying brightness.
+Ok, so our proximity alert / parking assistant / personal space violation detector project works nicely!  But the code can be cleaner, while adding the cool capabilities, like pulsing, or varying the brightness the of LEDs instead of just flashing them.
 
-How? We can use a technique called pulse width modulation ([PWM](https://www.arduino.cc/en/Tutorial/PWM)). This technique basically allows a digital device (like an LED) that only knows about ON/OFF to behave like if it handles a range of values like an analog device.  Essentially, we can vary the brightness of an LED by rapidly turning it on and off so that the total time that it is on in a given second (for example) varies.  If the average time the LED is *on* is low, the there is collectively less light being emitted, and we perceive the LED as being dim.  As the average amount time the LED spends being *on* gets longer, we perceive the LED as being brighter.  You can read more about PWM on your own later, but it can also be used to vary the speed of motors.
+How? We can use a technique called pulse width modulation ([PWM](https://www.arduino.cc/en/Tutorial/PWM)). This technique basically allows a digital device (like an LED) that only knows about ON/OFF to behave like if it handles a range of values like an analog device.  Essentially, we can vary the brightness of an LED by rapidly turning it on and off so that the total time that it is on in a given second (for example) varies.  If the average time the LED is *on* is low, then there is collectively less light being emitted, and we perceive the LED as being dim.  As the average amount time the LED spends being *on* gets longer, we perceive the LED as being brighter.  PWM can also be used to vary the speed of motors.
+
+Not all of the digital pins on the Arduino board support PWM. The ones that do support PWM are labelled with a "~" next to the pin number on the board.  
 
 Add the ```setColor()``` function to the code as shown from line 45 below: 
 
 ```c
 #include <NewPing.h>
 
-const int triggerPin = 13;
-const int echoPin = 12;
+const int triggerPin = 10;
+const int echoPin = 9;
 const int maxDistance = 500;
 const int redLedPin = 7;
 const int greenLedPin = 6;
+const int blueLedPin = 3;
 
 int inches = 0;
 int cm = 0;
@@ -831,15 +838,16 @@ void loop() {
     delay(100);
 }
 
-void setColor(int red, int green) {
-  	analogWrite(redLedPin, red);
-  	analogWrite(greenLedPin, green);
+void setColor(int red, int green, int blue) {
+    analogWrite(redLedPin, red);
+    analogWrite(greenLedPin, green);
+    analogWrite(blueLedPin, blue);
 }
 ```
 
 Then change the body of the ```loop()``` function as shown.  The setColor() function can be used to turn on red, green, and blue separately or combine them with various intensities.
 
-Test out the code with different values to see what happens!
+Test out the code by passing different values for red, green, and blue to the setColor() function to see what happens!
 
 ##### Challenge 1
 
@@ -854,6 +862,8 @@ Purchase an RGB LED and see what you can do to spice up this project!
 ##### Challenge 3
 
 Build a "wireless measuring tape" that displays the distance to an object on a little screen.  For this one, you will need to get a display like the [SD-1306 OLED](https://www.addicore.com/OLED-128x64-Monochrome-p/ad304.htm) display.  This is somewhat of an intermediate-to-advanced-level project, but once you're comfortable with working with Arduino, it should not be too hard to achieve!
+
+> **NOTE:**  The workshop code samples contain examples under the "project1" folder that show how to use PWM to fade the LEDs in and out, and how to use an RGB LED.
 
 
 
@@ -873,6 +883,8 @@ Ok, we're not actually going to build a complete weather station system, but we 
 
 Then we will discuss how you can take this project further to create a full-blown weather station!
 
+> **NOTE:** The diagram does not show the sensor connected to a breadboard, however, the assumption is that you are inserting it into a breadboard like we have been doing thus far.  The key thing is that the wiring is as shown, with the power connected to the leftmost pin.  You can use this sensor without a breadboard as shown in the diagram, but you will need male/female jumpers instead of the male/male jumpers provided with the kit.
+
 
 
 #### Getting Ready
@@ -888,7 +900,7 @@ For this project, we're going to need the following:
 
 #### Build It
 
-**Wire Up The Circuit**
+**Wire Up the Circuit**
 
 1. Connect the 5V and GND pins to the power and ground rails of the breadboard, as was done in previous projects.
 2. Insert the DHT11 sensor into the breadboard.
@@ -899,7 +911,7 @@ For this project, we're going to need the following:
 
 
 
-**Write The Code**
+**Write the Code**
 
 This should be the entire circuit.  Now let's write the code.  So, we've hopefully learned our lesson from Project 2 about using libraries to make working with sensors easy.  For this project, we're going to be using a library from Adafruit, written by Limor "Lady Ada" Fried herself!
 
@@ -1018,7 +1030,7 @@ It's no fun to have to look at your Serial Monitor all the time, so a great addi
 
 A weather station is not too effective at the "weather" part if it's a prototype on a breadboard connected to your computer.
 
-You can make it a real IoT device that sits outside in your yard, sensing weather conditions, and transmitting the data wirelessly to a base station inside your house.  This can be done by using a smaller, more power-efficient Arduino board like the Arduino Pro Micro, or an [ESP8266](https://www.addicore.com/ESP8266-ESP-12F-p/ad483.htm). The ESP8266 is a fantastic little device the size of a small postage stamp that includes full WiFi capabilities, is more powerful than an Arduino, can be programmed using the Arduino environment, and can cost as little as $2.  The ESP32 (produced by the same company as the ESP8266) includes WiFi and bluetooth, and a dual-core 32-bit processor.  These chips have become the go-to platform for IoT devices and adding wireless capabilities to your DIY projects.  I would recommend starting with one of the [Adafruit ESP-based boards](https://www.adafruit.com/?q=esp), since they are very high quality, and made right here in New York.
+You can make it a real IoT device that sits outside in your yard, sensing weather conditions, and transmitting the data wirelessly to a base station inside your house.  This can be done by using a smaller, more power-efficient Arduino board like the Arduino Pro Micro, or an [ESP8266](https://www.addicore.com/ESP8266-ESP-12F-p/ad483.htm). The ESP8266 is a fantastic little device the size of a small postage stamp that includes full WiFi capabilities, is more powerful than an Arduino, can be programmed using the Arduino environment, and can cost as little as $2.  The ESP32 (produced by the same company as the ESP8266) includes WiFi and Bluetooth, and a dual-core 32-bit processor.  These chips have become the go-to platform for IoT devices and adding wireless capabilities to your DIY projects.  I would recommend starting with one of the [Adafruit ESP-based boards](https://www.adafruit.com/?q=esp), since they are very high quality, and made right here in New York.
 
 
 
@@ -1030,7 +1042,7 @@ You can make it a real IoT device that sits outside in your yard, sensing weathe
 
 #### What We'll Build
 
-Who goes there!?  
+
 
 ![PIR Sensor](images/Project 4 - Motion Sensor.png)
 
@@ -1042,9 +1054,11 @@ Who goes there!?
 
 #### Build It
 
+> TODO
 
 
-**Writing The Code**
+
+**Writing the Code**
 
 
 
@@ -1093,11 +1107,11 @@ void loop(){
 
 #### How It Works
 
-
+> TODO
 
 #### Going Further
 
-
+> TODO
 
 
 
@@ -1105,17 +1119,17 @@ void loop(){
 
 # Resources
 
-**Arduino**  - https://arduino.cc.  Arduino is the Italian company that created the open source Arduino hardware and softare platform.  They also produce the "official" Arduino boards.
+**Arduino**  - https://arduino.cc.  Arduino is the Italian company that created the open source Arduino hardware and software platform.  They also produce the "official" Arduino boards.
 
-**TInkerCAD** (https://www.tinkercad.com/dashboard?type=circuits) is a site run by Autodesk that provides a great resource for beginners to visually build circuits with Arduinos, a breadboard, and lots of sensors and components.  Not only does it give you the ability to test your circuits, but it also provides a visual coding environment, where you build your code by dragging and dropping blocks!  It then generates the actual Arduino code that you can download and run on your own board.   [Circuito.io](https://www.circuito.io/app) is similar site, that seems to be geared towards intermediate to advanced makers.
+**TinkerCAD** (https://www.tinkercad.com/dashboard?type=circuits) is a site run by Autodesk that provides a great resource for beginners to visually build circuits with Arduinos, a breadboard, and lots of sensors and components.  Not only does it give you the ability to test your circuits, but it also provides a visual coding environment, where you build your code by dragging and dropping blocks!  It then generates the actual Arduino code that you can download and run on your own board.   [Circuito.io](https://www.circuito.io/app) is similar site, that seems to be geared towards intermediate to advanced makers.
 
 **Adafruit** (https://adafruit.com) is the electronics company founded and run by Limor "Lady Ada" Fried, who is a great engineer and influential woman in tech, and built one of the most important companies in the DIY electronics space. Adafruit manufactures their high-quality product right here in New York City!
 
  
 
-Course Resources
+### Course Resources
 
-- Github repo
+- GitHub repo: https://github.com/davidalexisnyt/Making-Things-Arduino-Workshop
 
 
 
@@ -1140,5 +1154,5 @@ https://www.postscapes.com/forum/arduino/47-if-arduino-is-for-prototyping-how/wh
 - Addicore.com
 - AdaFruit.com
 - Amazon
-- Microcenter
-- Tinkersphere
+- [Microcenter](https://www.microcenter.com/)
+- [Tinkersphere](https://tinkersphere.com/)
