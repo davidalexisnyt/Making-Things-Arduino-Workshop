@@ -465,7 +465,7 @@ The device will:
 
 The final circuit for this project will look like this:
 
-![](images/Project 2.2 - Range Sensor.png)
+![](images/Project 2-2 - Range Sensor.png)
 
 While building this project, we will also learn some new and important Arduino development skills.  We'll see how to use the Serial Monitor to see what's going on in our code while it's running on the Arduino.  We'll also learn how to use libraries (additional, 3rd party code) to simplify working with components like sensors.
 
