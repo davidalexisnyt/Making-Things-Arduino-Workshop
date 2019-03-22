@@ -16,7 +16,9 @@ Making Things with Arduino Workshop
 
 [Project 3 - Monitoring Your Environment](#project-3)
 
-[Glossary and Reference](#glossary-and-reference)
+[Project 4 - Motion Sensor](#project-4)
+
+[Resources](#resources)
 
 
 
@@ -504,8 +506,6 @@ The first step of our build will look like this:
 
 > **NOTE:**  The position of the sensor in the breadboard as depicted is not ideal, since the wires get in the way of the sensor's ultrasonic waves, which may lead to funky readings.  It is better to flip the sensor around so that it is facing away from any obstruction.  The important thing is that the wiring is correct: power is connected to the VCC pin, ground to the GND pin, the trigger pin connected to the Arduino's pin 10, and the echo pin connected to the Arduino's pin 9.  The pins are labeled on the sensor, so it is easy to check your wiring.
 
-> **NOTE:** The original diagram and code had the trigger pin connected to the Arduino pin 13.  This turned out to potentially cause weird readings.  This is possibly because pin 13 is internally connected to the Arduino's on-board LED, and maybe this generated a bit of noise on the pin.  Switching to other pins seemed to have cleared up this issue.  This documentation was updated to use pins 9 and 10 instead of 12 and 13.
-
 
 
 **Write the Code**
@@ -707,7 +707,7 @@ Great!  We have the distance sensor part of our project worked out.  But it's of
 
  Wire up the LED as shown here:
 
-![](images/Project 2.2 - Range Sensor.png)
+![](images/Project 2-2 - Range Sensor.png)
 
 1. Insert the red LED into the breadboard, taking note of position of the longer leg, which is +ve or pin. Insert the LED so that the longer leg is on the right, just to keep things clear.
 2. Connect a jumper wire from the LED's ground pin (left leg) to the ground rail.
@@ -1030,7 +1030,7 @@ It's no fun to have to look at your Serial Monitor all the time, so a great addi
 
 A weather station is not too effective at the "weather" part if it's a prototype on a breadboard connected to your computer.
 
-You can make it a real IoT device that sits outside in your yard, sensing weather conditions, and transmitting the data wirelessly to a base station inside your house.  This can be done by using a smaller, more power-efficient Arduino board like the Arduino Pro Micro, or an [ESP8266](https://www.addicore.com/ESP8266-ESP-12F-p/ad483.htm). The ESP8266 is a fantastic little device the size of a small postage stamp that includes full WiFi capabilities, is more powerful than an Arduino, can be programmed using the Arduino environment, and can cost as little as $2.  The ESP32 (produced by the same company as the ESP8266) includes WiFi and Bluetooth, and a dual-core 32-bit processor.  These chips have become the go-to platform for IoT devices and adding wireless capabilities to your DIY projects.  I would recommend starting with one of the [Adafruit ESP-based boards](https://www.adafruit.com/?q=esp), since they are very high quality, and made right here in New York.
+You can make it a real IoT device that sits outside in your yard, sensing weather conditions, and transmitting the data wirelessly to a base station inside your house.  This can be done by using a smaller, more power-efficient Arduino board like the Arduino Pro Micro, or an [ESP8266](https://www.addicore.com/ESP8266-ESP-12F-p/ad483.htm). The ESP8266 is a fantastic little device the size of a small postage stamp that includes full WiFi capabilities, is more powerful than an Arduino (32-bit processor, compared to the 8-bit chip used by Arduino Uno) , can be programmed using the Arduino environment, and can cost as little as $2.  The ESP32 (produced by the same company as the ESP8266) includes WiFi and Bluetooth, and a dual-core 32-bit processor.  These chips have become the go-to platform for IoT devices and adding wireless capabilities to your DIY projects.  I would recommend starting with one of the [Adafruit ESP-based boards](https://www.adafruit.com/?q=esp), since they are very high quality, and made right here in New York.
 
 
 
@@ -1042,7 +1042,7 @@ You can make it a real IoT device that sits outside in your yard, sensing weathe
 
 #### What We'll Build
 
-
+We're going to use a passive infra-red (PIR) motion sensor to build a simple project that can become the core of a home security system or automatic light switch.  This project will simply turn on an LED whenever it detects movement.
 
 ![PIR Sensor](images/Project 4 - Motion Sensor.png)
 
@@ -1050,11 +1050,28 @@ You can make it a real IoT device that sits outside in your yard, sensing weathe
 
 #### Getting Ready
 
+For this project, we will need:
+
+- A PIR sensor
+- 1 LED
+- 1 100 - 220Ohm resistor
+- 3 male/female jumper wires
+- 4 male/male jumper wires
+
 
 
 #### Build It
 
-> TODO
+Most PIR sensors are not breadboard-friendly, meaning they can't be inserted into a breadboard like most other components because of the obstructive placement of capacitors and other components on the bottom of the sensor.  We're going to use male/female jumper wires, since the female end of the wire can directly connect to the pins on the sensor. (Wow... can tech be any more misogynistic with this male/female terminology?)
+
+> **NOTE:**  Be very careful in wiring up this component so that the power is connected to the right pin and ground to the left.  Different manufacturers use different pinouts, with the power and ground pins in different positions.  See the details of the particular PIR sensor from our kit here:  https://www.addicore.com/PIR-Infrared-Motion-Sensor-HC-SR501-p/168.htm
+
+Wire up the circuit as shown in the diagram:
+
+1. Use a male/female jumper wire to connect the PIR sensor's ground pin (left) to the ground rail on the breadboard.
+2. Use another male/female jumper wire to connect the PIR sensor's power pin (right) to the power rail.
+3. Use one more male/female jumper wire to connect the sensor's middle pin (its data pin) to the Arduino's pin 2.
+4. Connect the LED, as shown, to the Arduino's pin 3 
 
 
 
@@ -1063,8 +1080,9 @@ You can make it a real IoT device that sits outside in your yard, sensing weathe
 
 
 ```c
-const int ledPin = 13;
 const int pirPin = 2;
+const int ledPin = 3;
+
 int pirState = LOW;
 int value = 0;
  
@@ -1112,6 +1130,65 @@ void loop(){
 #### Going Further
 
 > TODO
+
+![](images/Project 4-1 - Motion Sensor.png)
+
+
+
+```c
+const int pirPin = 2;
+const int ledPin = 3;
+const int buzzerPin = 4;
+
+int pirState = LOW;
+int value = 0;
+ 
+void setup() {
+    pinMode(ledPin, OUTPUT);
+    pinMode(pirPin, INPUT);
+   
+    Serial.begin(9600);
+}
+ 
+void loop(){
+    // Read the PIR sensor value.
+    // It will be HIGH when the sensor detects movement, otherwise LOW.
+    value = digitalRead(pirPin);
+    
+    if (value == HIGH) 
+    {
+        // This if statement construct is so that we only print output when the
+        // sensor value changes, not every time we read it.
+        if (pirState == LOW) {
+            Serial.println("Motion detected!");
+            pirState = HIGH;
+        }
+        
+        digitalWrite(ledPin, HIGH);
+        playAlarm();
+    } 
+    else 
+    {
+        digitalWrite(ledPin, LOW); // turn LED OFF
+        
+        if (pirState == HIGH){
+            Serial.println("Motion ended!");
+            pirState = LOW;
+        }
+    }
+}
+
+
+void playAlarm()
+{
+    tone(buzzerPin, 440, 200);
+    delay(200);
+    noTone(buzzerPin);
+    delay(200);
+}
+```
+
+
 
 
 
