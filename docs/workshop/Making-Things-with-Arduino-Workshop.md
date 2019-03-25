@@ -1194,7 +1194,7 @@ void playAlarm()
 }
 ```
 
-The tone() function is used to generate sounds through the buzzer pin.  It takes 3 parameters: the buzzer pin, the frequency of the sound to be made (in this case, we're using 440Hz, which is the A note), and the duration of the sound.  Read more about the tone functions here: https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
+The tone() function is used to generate sounds through the buzzer pin.  It takes 3 parameters: the buzzer pin, the frequency of the sound to be made (in this case, we're using 440Hz, which is the A note), and the duration of the sound.  Read more about the tone functions here: [Arduino Language Reference - Tone](https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/)
 
 
 
@@ -1220,17 +1220,17 @@ The tone() function is used to generate sounds through the buzzer pin.  It takes
 
 Excellent book on Arduino: [Mastering Arduino](https://www.packtpub.com/hardware-and-creative/mastering-arduino)
 
-https://www.arduino.cc/reference/en/
+[](https://www.arduino.cc/reference/en/)
 
-https://learn.sparkfun.com/tutorials/what-is-an-arduino/all
+[](https://learn.sparkfun.com/tutorials/what-is-an-arduino/all)
 
-https://learn.sparkfun.com/tutorials/what-is-a-circuit
+[](https://learn.sparkfun.com/tutorials/what-is-a-circuit)
 
-https://acadgild.com/blog/everything-need-know-arduino
+[](https://acadgild.com/blog/everything-need-know-arduino)
 
-https://makezine.com/2011/02/10/why-the-arduino-won-and-why-its-here-to-stay/
+[](https://makezine.com/2011/02/10/why-the-arduino-won-and-why-its-here-to-stay/)
 
-https://www.postscapes.com/forum/arduino/47-if-arduino-is-for-prototyping-how/when-do-you-make-the-actual-product/
+[](https://www.postscapes.com/forum/arduino/47-if-arduino-is-for-prototyping-how/when-do-you-make-the-actual-product/)
 
 
 
