@@ -75,8 +75,6 @@ https://www.youtube.com/watch?v=nL34zDTPkcs
 
 What can you to with Arduino or DIY electronics in general?  Anything you can imagine!  
 
-
-
 Here are just a few products you might know that started as an idea and prototyped using Arduino or similar microcontroller platform:
 
 ![Related image](images/1_TsRKRDcQGv4kaTeTl9Uq5g.jpeg)
@@ -139,11 +137,15 @@ One of the most important tools in the electronics prototyping toolbox is the **
 
 A breadboard is like a pin cushion for connecting things, with a grid of holes that are connected electrically.  There are two parts to a breadboard - the main area consisting of groups of **terminal strips** where components are inserted and arranged, and the **power rails** along the top and bottom.
 
+Here we see how a breadboard is connected internally. 
+
+![](images/breadboard_internal.png)
+
 The main area consists of a two separate grids of holes arranged in usually 30  or more columns (labeled 1 through 30) of 5 holes (labeled a through e, and f through j), separated by a groove. Each column of 5 holes is called a terminal strip. All of the 5 holes (or **tie points**) in a column are connected together internally. 
 
 The power rails are along the top and bottom of the breadboard, and each consists of two strips of tie points.  The power strip (+ve voltage) is marked with a **+** and a red line.  The ground rail is marked with a **-** and a line that is either black or blue.
 
-Power and ground are typically fed to the breadboard from the 5V and GND pins on the Arduino, and the strips are then used to feed power and ground to components of your circuit.  We'll see this in action later.
+Power and ground are typically fed to the breadboard from the 5V (or 3.3V) and GND pins on the Arduino, and the strips are then used to feed power and ground to components of your circuit.  We'll see this in action later.
 
 
 
@@ -191,8 +193,6 @@ If you decide to use the Arduino IDE, scroll down to the "**Download the Arduino
 
 The Web Editor is a great option, since all of your project code is stored up in the cloud and accessible from anywhere.  Using the Web Editor requires signing up for an account on the Arduino site at https://create.arduino.cc/.  It also requires the installation of a browser plugin and drivers that allow the browser to connect to boards connected to your computer in order to upload compiled code.  To install this plugin, click on the **Getting Started** block on the main create.arduino.cc site, scroll to the bottom of the page, and click on the link to install the plugin.  Once the plugin is installed, you're ready to go!
 
-
-
 #### Potential issues
 
 Windows and Linux PCs should be ready to roll, but Macs with High Sierra or newer MacOS version installed may have problems recognizing many Arduino boards. You will be able to tell is something is wrong if you connect your board to your computer, and a new entry does not show up in the Arduino IDE under the <kbd>Tools</kbd> > <kbd>Port</kbd> menu.
@@ -239,11 +239,9 @@ For this project, we're going to need the following:
 - Jumper wires.
 - Arduino IDE - installed and configured.  The Arduino Web Editor is a great alternative that requires a minimal installation of a browser plugin, but requires an account on the Arduino.cc website.
 
-
-
 #### Build It
 
-**Wire up the circuit**
+#####  Wire up the circuit
 
 Construct the LED circuit as shown in the diagram:
 
@@ -252,9 +250,7 @@ Construct the LED circuit as shown in the diagram:
 3. Connect the resistor in the breadboard so that one end is in the same terminal strip as the positive leg (right side) of the LED.
 4. Connect  a jumper wire between pin 9 of the Arduino and other leg of the resistor.
 
-
-
-**Write the code**
+#####  Write the code
 
 Now that the circuit is wired up, we need to tell the Arduino how to flash the LED.
 
@@ -277,9 +273,7 @@ void loop() {
 
 Save the Sketch using <kbd>Ctrl</kbd>+S  (<kbd>Cmd</kbd>-S on a Mac).  You will be prompted to enter a new name for the Sketch.  Enter a good name - like "HelloWorld" or "Blink".
 
-
-
-**Upload the Code**
+#####  Upload the Code
 
 Now that the code is written, we need to compile it and get it onto the board.
 
@@ -389,6 +383,8 @@ We've extracted the code that flashes the LED into its own function with paramet
 
 In the ```loop()``` function, we can now do some fancy stuff like do 2 rapid flashes followed by a longer flash.  Notice that the final delay() call was also removed, since the delay is built into the flash() function!
 
+
+
 #### Going Even Further
 
 Let's make Blinky a little more interactive.  We're going to learn how to use a button as input to control when the LED goes on.
@@ -495,7 +491,7 @@ The first step of our build will look like this:
 
 
 
-**Wire Up the Circuit**
+#####  Wire Up the Circuit
 
 1. Wire up the power from the Arduino to the breadboard.
     1. Connect a red jumper wire from the **5V** pin on the Arduino to the +ve (red) power rail on the breadboard
@@ -508,7 +504,7 @@ The first step of our build will look like this:
 
 
 
-**Write the Code**
+#####  Write the Code
 
 Create a new Sketch in the Arduino IDE and add the following code.  We'll go over how this code works later.
 
@@ -558,7 +554,7 @@ void loop() {
 
 
 
-**Upload the Code**
+#####  Upload the Code
 
 Compile and upload the code to your Arduino.  Once the upload is done, how do we know what it's doing?  We can't see anything happening!  This is where the Arduino IDE's Serial Monitor comes into play.
 
@@ -601,7 +597,7 @@ void setup() {
     . . .
 ```
 
-This line in the setup() function sets up our serial connection.  ```Serial.begin()``` starts the connection, and takes as its parameter, a number representing the speed at which we would like to communicate to the PC.  In this case, it is 9,600 baud.  That brings back memories of 1990's dialup connections! This is fast enough for basic debugging, but we can bump the speed up a bit if we're going to be rapidly sending lots of sensor data to the PC.
+This line in the setup() function initializes our serial connection.  ```Serial.begin()``` starts the connection, and takes as its parameter, a number representing the speed at which we would like to communicate to the PC.  In this case, it is 9,600 baud.  That brings back memories of 1990's dialup connections! This is fast enough for basic debugging, but we can bump the speed up a bit if we're going to be rapidly sending lots of sensor data to the PC.
 
 Remember, as we discussed before, that the Serial Monitor in the Arduino IDE must be set to the same speed.
 
@@ -718,7 +714,7 @@ Great!  We have the distance sensor part of our project worked out.  But it's of
 
 
 
-**Modify the Code**
+#####  Modify the Code
 
 Now let's modify our code to add support for the LEDs.  We can incorporate and expand on what we learned about LEDs in Project 1.  The new code includes 
 
@@ -900,7 +896,7 @@ For this project, we're going to need the following:
 
 #### Build It
 
-**Wire Up the Circuit**
+#####  Wire Up the Circuit
 
 1. Connect the 5V and GND pins to the power and ground rails of the breadboard, as was done in previous projects.
 2. Insert the DHT11 sensor into the breadboard.
@@ -909,9 +905,7 @@ For this project, we're going to need the following:
 5. Connect pin 2 of the DHT11 sensor to pin 2 of Arduino with a jumper wire.  This is the data pin from the sensor.
 6. Insert a resistor (10 - 20K) between the DHT11 sensor's pin 2 (data) and pin 4 (power) pin. 
 
-
-
-**Write the Code**
+#####  Write the Code
 
 This should be the entire circuit.  Now let's write the code.  So, we've hopefully learned our lesson from Project 2 about using libraries to make working with sensors easy.  For this project, we're going to be using a library from Adafruit, written by Limor "Lady Ada" Fried herself!
 
@@ -1077,7 +1071,7 @@ Wire up the circuit as shown in the diagram:
 
 **Writing the Code**
 
-
+Create a new sketch with the following code:
 
 ```c
 const int pirPin = 2;
@@ -1121,19 +1115,29 @@ void loop(){
 }
 ```
 
+Once you compile and upload this code, create some movement (e.g. with your hand) in front of the white dome of the sensor.  You should see the LED come on!  The LED will go off after about five seconds.  If you move again, the sensor will detect the movement and the LED will again turn on.
+
 
 
 #### How It Works
 
-> TODO
+The PIR sensor consists of two main parts:  A light-sensitive sensor that is sensitive to a specific band of infrared light, and the white dome that acts as a lens to pick up and concentrate incoming infrared light from many directions.  Living things, like humans and pets, emit infrared light because of the heat that they generate.  This is what the sensor picks up on.  When infrared light hits the sensor, it causes an electric current to flow, and this is what the Arduino reads.
+
+You can actually see the sensor under the dome if you carefully pry the white dome off.
+
+The same concept used in this project is how automatic lights are built - you walk into a dark room, and the lights automatically come on.  You can actually build something like that now by controlling a bigger, brighter LED or array of LEDs.
+
+
 
 #### Going Further
 
-> TODO
+Our Arduino kit came with a little piezo-electric buzzer, which produces tones when an electric current is applied to it.  Let's use the buzzer to implement an alarm that goes off whenever motion is detected.
+
+Insert the buzzer in the breadboard, as shown, and connect one pin to ground and the other to the Arduino's pin 4.
 
 ![](images/Project 4-1 - Motion Sensor.png)
 
-
+Then add the playAlarm() function as shown in the code below.  Add a call to playAlarm() in the body of the *if* statement that checks for a HIGH value from the sensor:
 
 ```c
 const int pirPin = 2;
@@ -1143,7 +1147,8 @@ const int buzzerPin = 4;
 int pirState = LOW;
 int value = 0;
  
-void setup() {
+void setup() 
+{
     pinMode(ledPin, OUTPUT);
     pinMode(pirPin, INPUT);
    
@@ -1159,7 +1164,8 @@ void loop(){
     {
         // This if statement construct is so that we only print output when the
         // sensor value changes, not every time we read it.
-        if (pirState == LOW) {
+        if (pirState == LOW) 
+        {
             Serial.println("Motion detected!");
             pirState = HIGH;
         }
@@ -1188,21 +1194,13 @@ void playAlarm()
 }
 ```
 
-
+The tone() function is used to generate sounds through the buzzer pin.  It takes 3 parameters: the buzzer pin, the frequency of the sound to be made (in this case, we're using 440Hz, which is the A note), and the duration of the sound.  Read more about the tone functions here: https://www.arduino.cc/reference/en/language/functions/advanced-io/tone/
 
 
 
 -----
 
 # Resources
-
-**Arduino**  - https://arduino.cc.  Arduino is the Italian company that created the open source Arduino hardware and software platform.  They also produce the "official" Arduino boards.
-
-**TinkerCAD** (https://www.tinkercad.com/dashboard?type=circuits) is a site run by Autodesk that provides a great resource for beginners to visually build circuits with Arduinos, a breadboard, and lots of sensors and components.  Not only does it give you the ability to test your circuits, but it also provides a visual coding environment, where you build your code by dragging and dropping blocks!  It then generates the actual Arduino code that you can download and run on your own board.   [Circuito.io](https://www.circuito.io/app) is similar site, that seems to be geared towards intermediate to advanced makers.
-
-**Adafruit** (https://adafruit.com) is the electronics company founded and run by Limor "Lady Ada" Fried, who is a great engineer and influential woman in tech, and built one of the most important companies in the DIY electronics space. Adafruit manufactures their high-quality product right here in New York City!
-
- 
 
 ### Course Resources
 
@@ -1211,6 +1209,16 @@ void playAlarm()
 
 
 ## Learning Resources
+
+**Arduino**  - https://arduino.cc.  Arduino is the Italian company that created the open source Arduino hardware and software platform.  They also produce the "official" Arduino boards.
+
+**TinkerCAD** (https://www.tinkercad.com/dashboard?type=circuits) is a site run by Autodesk that provides a great resource for beginners to visually build circuits with Arduinos, a breadboard, and lots of sensors and components.  Not only does it give you the ability to test your circuits, but it also provides a visual coding environment, where you build your code by dragging and dropping blocks!  It then generates the actual Arduino code that you can download and run on your own board.   [Circuito.io](https://www.circuito.io/app) is similar site, that seems to be geared towards intermediate to advanced makers.
+
+**Adafruit** (https://adafruit.com) is the electronics company founded and run by Limor "Lady Ada" Fried, who is a great engineer and influential woman in tech, and built one of the most important companies in the DIY electronics space. Adafruit manufactures their high-quality product right here in New York City!
+
+
+
+Excellent book on Arduino: [Mastering Arduino](https://www.packtpub.com/hardware-and-creative/mastering-arduino)
 
 https://www.arduino.cc/reference/en/
 
@@ -1228,8 +1236,14 @@ https://www.postscapes.com/forum/arduino/47-if-arduino-is-for-prototyping-how/wh
 
 ## Shopping
 
-- Addicore.com
-- AdaFruit.com
+- [Addicore.com](https://addicore.com)
+- [AdaFruit.com](https://adafruit.com)
 - Amazon
 - [Microcenter](https://www.microcenter.com/)
 - [Tinkersphere](https://tinkersphere.com/)
+
+Then there's always EBay, Alibaba.com and Banggood.com
+
+
+
+Now, go forth and MAKE!
