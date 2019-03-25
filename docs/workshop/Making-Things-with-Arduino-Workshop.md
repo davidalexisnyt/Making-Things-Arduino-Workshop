@@ -50,7 +50,7 @@ The kit contains the following:
 - Jumper wires
 - USB cable
 
-
+The source code for each iteration of the workshop projects, as well as numerous samples for additional projects, is available in the workshop's [github repo](https://github.com/davidalexisnyt/Making-Things-Arduino-Workshop/tree/master/code).
 
 ### What is Arduino?
 
