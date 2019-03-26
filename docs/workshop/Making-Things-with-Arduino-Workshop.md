@@ -183,7 +183,7 @@ However, a wise person once said that experience is directly proportional to the
 
 The Arduino integrated development environment (IDE) is a key part of working with Arduino boards, since it compiles your code, lets you know if there are any errors, provides libraries and tools to make interacting with boards seamless, uploads (programs) boards with your project's code, and provides a connection to your board for debugging.
 
-We must first download the software from the Arduino site ([](https://arduino.cc)) and install it.  Go to the site's Downloads section (https://www.arduino.cc/en/Main/Software).  Arduino offers two options - the Arduino IDE (which is installed locally on your computer) and the Web Editor (which is a web-based, cloud-hosted environment).
+We must first download the software from the Arduino site ([https://arduino.cc](https://arduino.cc)) and install it.  Go to the site's Downloads section (https://www.arduino.cc/en/Main/Software).  Arduino offers two options - the Arduino IDE (which is installed locally on your computer) and the Web Editor (which is a web-based, cloud-hosted environment).
 
 **Arduino IDE**
 
