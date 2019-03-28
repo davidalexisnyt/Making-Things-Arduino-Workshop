@@ -857,7 +857,7 @@ Purchase an RGB LED and see what you can do to spice up this project!
 
 ##### Challenge 3
 
-Build a "wireless measuring tape" that displays the distance to an object on a little screen.  For this one, you will need to get a display like the [SD-1306 OLED](https://www.addicore.com/OLED-128x64-Monochrome-p/ad304.htm) display.  This is somewhat of an intermediate-to-advanced-level project, but once you're comfortable with working with Arduino, it should not be too hard to achieve!
+Build a "wireless measuring tape" that displays the distance to an object on a little screen.  For this one, you will need to get a display like the [SSD-1306 OLED](https://www.addicore.com/OLED-128x64-Monochrome-p/ad304.htm) display.  This is somewhat of an intermediate-to-advanced-level project, but once you're comfortable with working with Arduino, it should not be too hard to achieve!
 
 > **NOTE:**  The workshop code samples contain examples under the "project1" folder that show how to use PWM to fade the LEDs in and out, and how to use an RGB LED.
 
@@ -1018,9 +1018,9 @@ The rest of the code simply prints out the data to the Serial Monitor.
 
 #### Going Further
 
-What we have built is the core of a weather station!  You can take this project further by adding barometric pressure readings using a sensor like the [BMP180](https://www.addicore.com/BMP180-Barometric-Pressure-Sensor-p/230.htm).  This can help predict upcoming changes in the weather that are usually preceded by changes in are pressure.
+What we have built is the core of a weather station!  You can take this project further by adding barometric pressure readings using a sensor like the [BMP180](https://www.addicore.com/BMP180-Barometric-Pressure-Sensor-p/230.htm).  This can help predict upcoming changes in the weather that are usually preceded by changes in air pressure.
 
-It's no fun to have to look at your Serial Monitor all the time, so a great addition to the project would be to add a display.  The [SD-1306](https://www.addicore.com/OLED-128x64-Monochrome-p/ad304.htm) display is a tiny, inexpensive OLED screen that works great with Arduino.  A sample project that uses this display in a clock build is included in the resources provided alongside this course.  Get one of the displays, play around with the sample project to get a feel for working with the display, then add it to this project to make a little desktop weather gadget.
+It's no fun to have to look at your Serial Monitor all the time, so a great addition to the project would be to add a display.  The [SSD-1306](https://www.addicore.com/OLED-128x64-Monochrome-p/ad304.htm) display is a tiny, inexpensive OLED screen that works great with Arduino.  A sample project that uses this display in a clock build is included in the resources provided alongside this course.  Get one of the displays, play around with the sample project to get a feel for working with the display, then add it to this project to make a little desktop weather gadget.
 
 A weather station is not too effective at the "weather" part if it's a prototype on a breadboard connected to your computer.
 
