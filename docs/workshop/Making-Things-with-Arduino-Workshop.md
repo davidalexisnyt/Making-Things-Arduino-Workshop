@@ -34,7 +34,7 @@ Building fun electronic projects is a great way to jumpstart your imagination an
 
 You will learn the how to use the Arduino development environment, putting together project prototypes, how to build your own projects using motion sensors, temperature and humidity sensors, and LEDs, and how to find and use resources that will help you go further to build anything you can imagine!
 
-No experience with electronics or coding is required, but some basic knowledge of coding would definitely help speed things along. Everything you need to participate in the workshop is provided in a [complementary kit](https://goo.gl/FcvwX3) that is meant to be suitable for beginners, while also providing the basis for some interesting projects.
+No experience with electronics or coding is required, but some basic knowledge of coding would definitely help speed things along. Everything you need to participate in the workshop is provided in a complementary kit that is meant to be suitable for beginners, while also providing the basis for some interesting projects.
 
 The kit contains the following:
 
